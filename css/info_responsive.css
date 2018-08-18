@@ -1,0 +1,157 @@
+* {
+  box-sizing: border-box;
+}
+
+/* body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+} */
+
+#maincontent {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#breadcrumb {
+  background-color: #eec;
+  width: 100%;
+}
+
+.inside #map-container {
+  height: 65%;
+  max-height: 80%;
+  top: 155px;
+  width: 100%;
+  -webkit-transform: translate(-1000px, 0);
+  transform: translate(-1000px, 0);
+  transition: transform 0.3s ease;
+}
+
+#restaurant-container {
+  width: 100%;
+}
+
+#reviews-container {
+  width: 100%;
+}
+
+.inside #footer {
+  width: 100%;
+}
+
+#reviews-list li {
+  width: 100%;
+  font-size: 14pt;
+}
+
+#restaurant-name {
+  font-size: 17pt;
+}
+
+#restaurant-img {
+  width: 100%;
+}
+
+#restaurant-cuisine {
+  min-width: 100%;
+}
+
+#reviews-list li p {
+  margin-top: 10px;
+}
+
+#basic-info {
+  width: 100%;
+}
+
+#hours-open {
+  width: 88%;
+}
+
+#restaurant-img {
+  min-width: 92%;
+  min-height: 183px;
+}
+
+#restaurant-cuisine {
+  width: 92%;
+}
+
+@media screen and (min-width: 535px) {
+  #restaurant-address {
+    font-size: 16pt;
+  }
+
+  #restaurant-hours {
+    font-size: 14pt;
+  }
+}
+
+@media screen and (min-width: 650px) {
+  #restaurant-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  #basic-info {
+    width: 50%;
+    margin-right: 10px;
+  }
+
+  #hours-open {
+    width: 40%;
+    margin-top: 55px;
+    font-size: 15pt;
+  }
+
+  #restaurant-hours {
+    font-size: 12pt;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  #restaurant-address {
+    font-weight: bold;
+  }
+
+  #restaurant-hours {
+    font-size: 14pt;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  #basic-info {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  #hours-open {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .inside #map-container {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+    width: 50%;
+  }
+
+  #restaurant-container {
+    width: 50%;
+  }
+
+  #restaurant-hours {
+    font-size: 13pt;
+  }
+
+  #reviews-list {
+    width: 50%;
+  }
+}
+
+/* @media screen and (min-width: 900px) {
+  
+} */
