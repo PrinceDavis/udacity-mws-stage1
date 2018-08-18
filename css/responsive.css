@@ -17,6 +17,11 @@ video {
   max-width: 100%;
 }
 
+#restaurants-list .restaurant-img {
+  min-height: 198px;
+  margin-top: 25px;
+}
+
 .filter-options {
   display: flex;
   flex-wrap: wrap;
@@ -33,17 +38,49 @@ video {
   margin-right: 10px;
   margin-bottom: 20px;
   width: calc((100% - 30px) / 2);
+  max-width: 200px;
 }
 
 .filter-options select:first-of-type {
   margin-left: 10px;
 }
+
 #restaurants-list {
   display: flex;
   flex-wrap: wrap;
+  padding: 15px 15px 60px;
 }
+
 #restaurants-list li {
   margin: 0;
   width: 100%;
   margin-bottom: 15px;
+}
+
+#restaurants-list li a {
+  min-height: 48px;
+  min-width: 48px;
+  padding: 10px 15px 10px;
+}
+
+@media screen and (min-width: 590px) {
+  #restaurants-list li {
+    margin-right: 15px;
+    width: calc((100% - 30px) / 2);
+  }
+
+  #restaurants-list .restaurant-img {
+    min-height: 158px;
+  }
+}
+
+@media screen and (min-width: 1020px) {
+  #restaurants-list li {
+    margin-right: 15px;
+    width: calc((100% - 45px) / 3);
+  }
+}
+
+#restaurants-list li:last-of-type {
+  margin-right: 0;
 }
