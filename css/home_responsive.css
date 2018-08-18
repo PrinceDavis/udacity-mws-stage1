@@ -1,3 +1,4 @@
+/* CSS General */
 * {
   box-sizing: border-box;
 }
@@ -23,10 +24,7 @@ video {
   max-width: 100%;
 }
 
-#restaurants-list .restaurant-img {
-  min-height: 198px;
-  margin-top: 25px;
-}
+/* Filter */
 
 .filter-options {
   display: flex;
@@ -51,6 +49,13 @@ video {
   margin-left: 10px;
 }
 
+/* Restaurants */
+
+#restaurants-list .restaurant-img {
+  min-height: 198px;
+  margin-top: 25px;
+}
+
 #restaurants-list {
   display: flex;
   flex-wrap: wrap;
@@ -67,6 +72,10 @@ video {
   min-height: 48px;
   min-width: 48px;
   padding: 10px 15px 10px;
+}
+
+#restaurants-list li:last-of-type {
+  margin-right: 0;
 }
 
 @media screen and (min-width: 590px) {
@@ -104,8 +113,4 @@ video {
     margin-right: 15px;
     width: calc((100% - 45px) / 3);
   }
-}
-
-#restaurants-list li:last-of-type {
-  margin-right: 0;
 }
