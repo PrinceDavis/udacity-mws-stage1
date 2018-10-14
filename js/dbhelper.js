@@ -31,6 +31,7 @@ class DBHelper {
    * @param  {array} restaurants 
    */
   static storeRestaurantLocally(restaurants) {
+    console.log(restaurants);
     DBHelper.connectIDB().then(db => {
       if(!db) return;
       const store = db.transaction("restaurants", "readwrite").objectStore("restaurants");
@@ -55,12 +56,12 @@ class DBHelper {
    */
   static fetchRestaurants(callback) {
     DBHelper.getCachedRestaurantData().then(restaurants => {
-      if(restaurants) {
+      if(restaurants[0]) {
         callback(null, restaurants);
       }else {
         fetch(DBHelper.DATABASE_URL).then(res => res.json())
         .then(data => {
-          DBHelper.storeRestaurantLocally(restaurants);
+          DBHelper.storeRestaurantLocally(data);
           callback(null, data);
         }).catch(err => callback(err, null));
       }
