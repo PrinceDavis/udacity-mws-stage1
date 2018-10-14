@@ -12,14 +12,59 @@ class DBHelper {
     return `http://localhost:${port}/restaurants`;
   }
 
+  
+  
+  /**
+   * @desc  esterblishs a connection to indexeDB
+   * @return indexedDB connection
+   */
+  static connectIDB() {
+    return idb.open("restaurant-store", 1, (db) => {
+      db.createObjectStore("restaurants", {
+        keyPath: "id"
+      });
+    })
+  }
+
+  /**
+   * @desc put restaurant data into local cache
+   * @param  {array} restaurants 
+   */
+  static storeRestaurantLocally(restaurants) {
+    DBHelper.connectIDB().then(db => {
+      if(!db) return;
+      const store = db.transaction("restaurants", "readwrite").objectStore("restaurants");
+      restaurants.forEach(restaurant => {
+        store.put(restaurant);
+      });
+    });
+  }
+  /**
+   * @desc fetch restaurant data cached locally
+   * @return {Promise<Array>}
+   */
+  static getCachedRestaurantData() {
+    return DBHelper.connectIDB().then(db => {
+      return db.transaction("restaurants").objectStore("restaurants").getAll();
+    })
+  }
+
   /**
    * Fetch all restaurants.
    */
   static fetchRestaurants(callback) {
-    fetch(DBHelper.DATABASE_URL).then(res => res.json())
-    .then(data => {
-        callback(null, data);
-    }).catch(err => callback(err, null));
+    DBHelper.getCachedRestaurantData().then(restaurants => {
+      if(restaurants) {
+        callback(null, restaurants);
+      }else {
+        fetch(DBHelper.DATABASE_URL).then(res => res.json())
+        .then(data => {
+          callback(null, data);
+        }).catch(err => callback(err, null));
+      }
+    })
+
+    
     
   }
 
