@@ -1,4 +1,4 @@
-const cacheName = "tg-restaurant2";
+const cacheName = "tg-restaurant5";
 
 self.addEventListener("install", event => {
   event.waitUntil(
@@ -18,7 +18,12 @@ self.addEventListener("activate", event => {
 });
 
 self.addEventListener("fetch", event => {
-
+  //restaurants
+  if(event.request.url.endsWith("restaurants")) {
+    return event.respondWith(
+      fetch(event.request).then(res => res)
+    )
+  }
   event.respondWith(
     caches.open(cacheName).then(cache => {
       return cache.match(event.request).then(res => 

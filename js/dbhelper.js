@@ -39,6 +39,7 @@ class DBHelper {
       });
     });
   }
+
   /**
    * @desc fetch restaurant data cached locally
    * @return {Promise<Array>}
@@ -59,13 +60,11 @@ class DBHelper {
       }else {
         fetch(DBHelper.DATABASE_URL).then(res => res.json())
         .then(data => {
+          DBHelper.storeRestaurantLocally(restaurants);
           callback(null, data);
         }).catch(err => callback(err, null));
       }
-    })
-
-    
-    
+    })    
   }
 
   /**

@@ -168,6 +168,11 @@ nav h1 a {
   margin: 20px 0 10px;
   text-transform: uppercase;
 }
+
+#restaurants-list li h2 {
+  margin-top: 15px;
+}
+
 #restaurants-list p {
   margin: 0;
   font-size: 11pt;
