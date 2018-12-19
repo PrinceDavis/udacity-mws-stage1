@@ -254,13 +254,34 @@ nav h1 a {
 #reviews-container {
   padding: 30px 40px 80px;
 }
+
+.reviews__header {
+  display: flex;
+  flex-flow: row nowrap;
+
+  justify-content: flex-start;
+}
+
 #reviews-container h2 {
   color: #f58500;
   font-size: 24pt;
   font-weight: 300;
   letter-spacing: -1px;
   padding-bottom: 1pt;
+  margin-right: 20px;
 }
+
+.review__button {
+  cursor: pointer;
+  outline: none;
+  height: 38px;
+  background-color: #0275d8;
+  color: #fff;
+  font-size: 14pt;
+  border-radius: 18px;
+  padding: 0 13px;
+}
+
 #reviews-list {
   margin: 0;
   padding: 0;
