@@ -16,6 +16,10 @@
       integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
       crossorigin=""
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#3397db" />
 
@@ -75,7 +79,58 @@
       Copyright (c) 2017
       <a href="/"> <strong>Restaurant Reviews</strong> </a> All Rights Reserved.
     </footer>
-
+    <div class="popup">
+      <div class="popup__content">
+        <h4 class="popup__heading">
+          Have you spent time with use lately? Tells us about your experience
+        </h4>
+        <div class="popup__form">
+          <form action="" class="form">
+            <div class="form__group">
+              <div class="rating__wrapper">
+                <div class="rating__text">Ratings</div>
+                <fieldset class="rating">
+                  <input type="radio" id="star1" name="rating" value="1" />
+                  <label class="full" for="star1"></label>
+                  <input type="radio" id="star2" name="rating" value="2" />
+                  <label class="full" for="star2"></label>
+                  <input type="radio" id="star3" name="rating" value="3" />
+                  <label class="full" for="star3"></label>
+                  <input type="radio" id="star4" name="rating" value="4" />
+                  <label class="full" for="star4"></label>
+                  <input type="radio" id="star5" name="rating" value="5" />
+                  <label class="full" for="star5"></label>
+                </fieldset>
+              </div>
+            </div>
+            <div class="form__group">
+              <textarea
+                type="text"
+                class="form__input"
+                placeholder="Comment"
+                id="comment"
+                name="comment"
+                required
+              ></textarea>
+              <label for="comment" class="form__label"> Comment </label>
+            </div>
+            <div class="form__group">
+              <input
+                type="text"
+                class="form__input"
+                placeholder="Name"
+                id="name"
+                required
+              />
+              <label for="name" class="form__label">Name</label>
+            </div>
+            <div class="form__group">
+              <button class="btn btn--green">Make Review &rarr;</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
     <!-- End footer -->
     <script
       src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"

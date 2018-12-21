@@ -1,6 +1,13 @@
 @charset "utf-8";
 /* CSS Document */
 
+*,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
 body {
   background-color: #fdfdfd;
   margin: 0;
@@ -302,4 +309,181 @@ nav h1 a {
 }
 #restaurant-hours td {
   color: #666;
+}
+
+/* ====================== Addin Review ====================== */
+.popup {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.popup__content {
+  height: 500px;
+  width: 75%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #d9d9d9;
+}
+
+.popup__heading {
+  font-size: 16pt;
+  text-align: center;
+}
+
+.form {
+  width: 50%;
+  margin: 0 auto;
+  font-size: 14pt;
+}
+
+.form__group:not(:last-child) {
+  margin-bottom: 2rem;
+}
+
+.form__input {
+  font-size: 1.5rem;
+  padding: 1.3rem 1.8rem;
+  border-radius: 2px;
+  font-family: inherit;
+  color: inherit;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 0;
+  border-bottom: 3px solid transparent;
+  width: 90%;
+  display: block;
+  transition: all 0.3s;
+}
+
+.form__input:focus {
+  outline: none;
+  border-bottom: 3px solid #7ed56f;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+}
+
+.form__input:focus:invalid {
+  border-bottom: 3px solid #ff7730;
+}
+
+.form__input::-webkit-input-placeholder {
+  color: #999;
+}
+
+.form__label {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-left: 2rem;
+  margin-top: 0.4rem;
+  display: block;
+  transition: all 0.3s;
+}
+
+.form__input:placeholder-shown + .form__label {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4rem);
+}
+
+.rating__wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+}
+
+/* Ratings */
+.rating {
+  border: none;
+}
+
+.rating__text {
+  margin-top: 6px;
+  margin-right: 20px;
+}
+
+.rating > input {
+  display: none;
+}
+
+.rating > label:before {
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > label {
+  color: black;
+  float: right;
+}
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label {
+  color: #f58500;
+} /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label {
+  color: #ffd700;
+}
+
+/* Btn */
+.btn {
+  padding: 1rem 1.5rem;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s;
+  border-radius: 10rem;
+  font-size: 16pt;
+  position: relative;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: translateY(-0.3rem);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn:active,
+.btn:focus {
+  outline: none;
+  transform: translateY(-0.1rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.btn--green {
+  background-color: #f58500;
+  color: #fff;
+}
+
+.btn--green::after {
+  background-color: #f58500;
+}
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 10rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;
 }
