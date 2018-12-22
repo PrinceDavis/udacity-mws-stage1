@@ -84,6 +84,54 @@
   width: 100%;
 }
 
+@media screen and (max-width: 400px) {
+  .popup__content {
+    width: 99%;
+  }
+
+  .popup__heading {
+    font-size: 13pt;
+    margin: 0;
+    margin-top: 3rem;
+  }
+
+  .popup__close {
+    top: 4px;
+    right: 7px;
+    padding: 1rem 1rem;
+  }
+
+  .form {
+    width: 71%;
+  }
+
+  .form__group:not(:last-child) {
+    margin-bottom: 0;
+  }
+
+  .rating__wrapper {
+    width: 100%;
+    margin-bottom: 2rem;
+    margin-top: 3rem;
+  }
+
+  .rating__text {
+    margin-top: 6px;
+    margin-right: 0;
+    font-size: 1.2rem;
+  }
+
+  .form__input {
+    width: 100%;
+    padding: 1rem 1rem;
+  }
+
+  .btn--blue {
+    white-space: nowrap;
+    padding: 0.6rem 1rem;
+  }
+}
+
 @media screen and (min-width: 535px) {
   #restaurant-address {
     font-size: 16pt;
