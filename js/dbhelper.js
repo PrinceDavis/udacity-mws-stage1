@@ -26,12 +26,20 @@ class DBHelper {
     })
   }
 
+  static postReview(data) {
+    return fetch(DBHelper.DATABASE_URL, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+  }
   /**
    * @desc put restaurant data into local cache
    * @param  {array} restaurants 
    */
   static storeRestaurantLocally(restaurants) {
-    console.log(restaurants);
     DBHelper.connectIDB().then(db => {
       if(!db) return;
       const store = db.transaction("restaurants", "readwrite").objectStore("restaurants");

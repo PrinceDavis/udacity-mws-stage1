@@ -5,8 +5,41 @@ var newMap;
  * Initialize map as soon as the page is loaded.
  */
 document.addEventListener('DOMContentLoaded', (event) => {  
+  const reviewButtons = document.querySelector(".btn--blue");
+  const reviewForm = document.getElementById("newreview");
+  const close = document.querySelector(".popup__close");
+
+  reviewForm.addEventListener("submit", handleReviewSubmission);
+  reviewButtons.addEventListener("click", togglePopUp);
+  close.addEventListener("click", togglePopUp, false);
   initMap();
+  
 });
+
+/**
+ * add ne3w review to the database
+ */
+handleReviewSubmission = e => {
+  e.preventDefault();
+  const id = getParameterByName("id");
+  data = new FormData(e.target);
+  data.append("restaurant_id", id);
+  DBHelper.postReview(data).then(res => {
+    togglePopUp();
+    setTimeout(() => {
+      alert("Review added to database");
+    }, 90)
+  }).catch(err => alert("Oops! \n We are unable to add your review to the database"))
+}
+
+togglePopUp = () => {
+  const popUp  = document.getElementById("popup");
+  if(popUp.classList.contains("visible")) {
+    popUp.classList.remove("visible");
+  }else {
+    popUp.classList.add("visible");
+  }
+}
 
 /**
  * Initialize leaflet map

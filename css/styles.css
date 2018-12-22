@@ -1,6 +1,15 @@
 @charset "utf-8";
 /* CSS Document */
 
+html {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #fdfdfd;
+  position: relative;
+}
+
 *,
 *::after {
   margin: 0;
@@ -8,31 +17,21 @@
   box-sizing: inherit;
 }
 
-body {
-  background-color: #fdfdfd;
-  margin: 0;
-  position: relative;
-}
 a {
   color: orange;
   text-decoration: none;
 }
+
 a:hover,
 a:focus {
   color: #3397db;
   text-decoration: none;
 }
+
 a img {
   border: none 0px #fff;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0 0 20px;
-}
+
 article,
 aside,
 canvas,
@@ -278,17 +277,6 @@ nav h1 a {
   margin-right: 20px;
 }
 
-.review__button {
-  cursor: pointer;
-  outline: none;
-  height: 38px;
-  background-color: #0275d8;
-  color: #fff;
-  font-size: 14pt;
-  border-radius: 18px;
-  padding: 0 13px;
-}
-
 #reviews-list {
   margin: 0;
   padding: 0;
@@ -320,11 +308,37 @@ nav h1 a {
   left: 0;
   z-index: 9999;
   background-color: rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform, opacity;
+  -webkit-transform: scale(1.15);
+  transform: scale(1.15);
+
+  -webkit-transition: -webkit-transform 0.1s
+      cubic-bezier(0.465, 0.183, 0.153, 0.946),
+    opacity 0.1s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+
+  transition: transform 0.1s cubic-bezier(0.465, 0.183, 0.153, 0.946),
+    opacity 0.1s cubic-bezier(0.465, 0.183, 0.153, 0.946);
 }
 
+.popup.visible {
+  pointer-events: auto;
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+
+  -webkit-transition: -webkit-transform 0.3s
+      cubic-bezier(0.465, 0.183, 0.153, 0.946),
+    opacity 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+
+  transition: transform 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946),
+    opacity 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+}
 .popup__content {
   height: 500px;
   width: 75%;
+  padding-top: 1rem;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -332,9 +346,17 @@ nav h1 a {
   background: #d9d9d9;
 }
 
+.popup__close {
+  position: absolute;
+  top: 23px;
+  right: 30px;
+  cursor: pointer;
+}
+
 .popup__heading {
-  font-size: 16pt;
+  font-size: 15pt;
   text-align: center;
+  margin: 1rem 0;
 }
 
 .form {
@@ -344,12 +366,12 @@ nav h1 a {
 }
 
 .form__group:not(:last-child) {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .form__input {
-  font-size: 1.5rem;
-  padding: 1.3rem 1.8rem;
+  font-size: 1.2rem;
+  padding: 1.3rem 0.5rem;
   border-radius: 2px;
   font-family: inherit;
   color: inherit;
@@ -404,15 +426,17 @@ nav h1 a {
 .rating__text {
   margin-top: 6px;
   margin-right: 20px;
+  font-size: 1.2rem;
 }
 
 .rating > input {
-  display: none;
+  opacity: 0;
+  width: 1px;
 }
 
 .rating > label:before {
   margin: 5px;
-  font-size: 1.25em;
+  font-size: 1.2em;
   font-family: FontAwesome;
   display: inline-block;
   content: "\f005";
@@ -438,12 +462,12 @@ nav h1 a {
 
 /* Btn */
 .btn {
-  padding: 1rem 1.5rem;
+  padding: 0.6rem 1.5rem;
   text-decoration: none;
   display: inline-block;
   transition: all 0.2s;
   border-radius: 10rem;
-  font-size: 16pt;
+  font-size: 1.2rem;
   position: relative;
   border: none;
   cursor: pointer;
@@ -473,6 +497,15 @@ nav h1 a {
 
 .btn--green::after {
   background-color: #f58500;
+}
+
+.btn--blue {
+  background-color: #0275d8;
+  color: #fff;
+}
+
+.btn--blue::after {
+  background-color: #0275d8;
 }
 
 .btn::after {

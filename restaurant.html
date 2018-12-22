@@ -66,7 +66,7 @@
       <section id="reviews-container">
         <div class="reviews__header">
           <h2>Reviews</h2>
-          <button class="review__button">Leave a Review</button>
+          <button class="btn btn--blue">Leave a Review</button>
         </div>
         <ul id="reviews-list"></ul>
       </section>
@@ -79,27 +79,34 @@
       Copyright (c) 2017
       <a href="/"> <strong>Restaurant Reviews</strong> </a> All Rights Reserved.
     </footer>
-    <div class="popup">
+    <div class="popup" id="popup">
       <div class="popup__content">
         <h4 class="popup__heading">
           Have you spent time with use lately? Tells us about your experience
         </h4>
+        <span class="popup__close"> <i class="fa fa-times"></i></span>
         <div class="popup__form">
-          <form action="" class="form">
+          <form action="" class="form" id="newreview">
             <div class="form__group">
               <div class="rating__wrapper">
                 <div class="rating__text">Ratings</div>
                 <fieldset class="rating">
-                  <input type="radio" id="star1" name="rating" value="1" />
-                  <label class="full" for="star1"></label>
-                  <input type="radio" id="star2" name="rating" value="2" />
-                  <label class="full" for="star2"></label>
-                  <input type="radio" id="star3" name="rating" value="3" />
-                  <label class="full" for="star3"></label>
-                  <input type="radio" id="star4" name="rating" value="4" />
-                  <label class="full" for="star4"></label>
                   <input type="radio" id="star5" name="rating" value="5" />
                   <label class="full" for="star5"></label>
+                  <input type="radio" id="star4" name="rating" value="4" />
+                  <label class="full" for="star4"></label>
+                  <input type="radio" id="star3" name="rating" value="3" />
+                  <label class="full" for="star3"></label>
+                  <input type="radio" id="star2" name="rating" value="2" />
+                  <label class="full" for="star2"></label>
+                  <input
+                    type="radio"
+                    id="star1"
+                    name="rating"
+                    value="1"
+                    required
+                  />
+                  <label class="full" for="star1"></label>
                 </fieldset>
               </div>
             </div>
@@ -109,7 +116,7 @@
                 class="form__input"
                 placeholder="Comment"
                 id="comment"
-                name="comment"
+                name="comments"
                 required
               ></textarea>
               <label for="comment" class="form__label"> Comment </label>
@@ -120,12 +127,15 @@
                 class="form__input"
                 placeholder="Name"
                 id="name"
+                name="name"
                 required
               />
               <label for="name" class="form__label">Name</label>
             </div>
             <div class="form__group">
-              <button class="btn btn--green">Make Review &rarr;</button>
+              <button class="btn btn--green" type="submit">
+                Make Review &rarr;
+              </button>
             </div>
           </form>
         </div>
