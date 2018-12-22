@@ -8,11 +8,23 @@ var markers = []
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
 document.addEventListener('DOMContentLoaded', (event) => {
-  initMap(); // added 
+  initMap();
   fetchNeighborhoods();
   fetchCuisines();
-  // registerServiceWorker()
+  hydrateReviewQueueUpstream();
+  registerServiceWorker()
 });
+
+// push all locally saved reviews online
+hydrateReviewQueueUpstream = () => {
+  DBHelper.getCachedReviews().then((reviews) => {
+    reviews.forEach(review => {
+      DBHelper.postReview(review).then(() => {
+        DBHelper.deleteReview(review);
+      })
+    })
+  })
+}
 
 registerServiceWorker = () => {
   if(!navigator.serviceWorker) return;

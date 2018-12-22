@@ -19,14 +19,18 @@ class DBHelper {
    * @return indexedDB connection
    */
   static connectIDB() {
-    return idb.open("restaurant-store", 1, (db) => {
-      db.createObjectStore("restaurants", {
-        keyPath: "id"
-      });
+    return idb.open("restaurant-store", 2, (db) => {
+      switch (db.oldVersion) {
+        case 0:
+        db.createObjectStore("restaurants", { keyPath: "id"});
+        case 1:
+        db.createObjectStore("review-queue", {keyPath: "restaurant_id"});
+      }
     })
   }
 
   static postReview(data) {
+    // check for network and queue data locally if there is none
     return fetch(DBHelper.DATABASE_URL, {
       method: "POST",
       body: JSON.stringify(data),
@@ -49,6 +53,22 @@ class DBHelper {
     });
   }
 
+
+  /**
+   * Temporarily store new reviews local while users can't access the internet
+   * @param {object} data 
+   */
+  static queueReview(data) {
+    return DBHelper.connectIDB().then(db => {
+      if(!db) return Promise.resolve();
+
+      console.log(data);
+      const tx = db.transaction("review-queue", "readwrite");
+      tx.objectStore("review-queue").put(data);
+      return tx.complete;
+    })
+  }
+
   /**
    * @desc fetch restaurant data cached locally
    * @return {Promise<Array>}
@@ -56,6 +76,25 @@ class DBHelper {
   static getCachedRestaurantData() {
     return DBHelper.connectIDB().then(db => {
       return db.transaction("restaurants").objectStore("restaurants").getAll();
+    })
+  }
+
+  /**
+   * Fetch all reveiws in local store
+   */
+  static getCachedReviews() {
+    return DBHelper.connectIDB().then(db => {
+      return db.transaction("review-queue").objectStore("review-queue").getAll();
+    })
+  }
+
+  /**
+   * Delete all a queued review
+   */
+  static deleteReview(reveiw) {
+    DBHelper.connectIDB().then(db => {
+      db.transaction("review-queue", "readwrite").objectStore("review-queue")
+        .delete(reveiw.restaurant_id);
     })
   }
 

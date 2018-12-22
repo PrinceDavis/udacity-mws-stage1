@@ -1,10 +1,10 @@
-const cacheName = "tg-restaurant-1";
+const cacheName = "tg-restaurant-3";
 
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(cacheName)
       .then(cache => {
-        return cache.addAll([]);
+        return cache.addAll([""]);
       })
   );
 });

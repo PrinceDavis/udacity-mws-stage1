@@ -22,14 +22,24 @@ document.addEventListener('DOMContentLoaded', (event) => {
 handleReviewSubmission = e => {
   e.preventDefault();
   const id = getParameterByName("id");
-  data = new FormData(e.target);
+  const data = new FormData(e.target);
   data.append("restaurant_id", id);
   DBHelper.postReview(data).then(res => {
     togglePopUp();
     setTimeout(() => {
       alert("Review added to database");
     }, 90)
-  }).catch(err => alert("Oops! \n We are unable to add your review to the database"))
+  }).catch(err => {
+    const review = {};
+
+    for (const key of data.keys()) {
+      review[key] = data.get(key);
+    }
+    DBHelper.queueReview(review).then(() => {
+      alert("Oops! \n You appear to be offline so we stored your review on the brower");
+    }).catch(err => console.log(err))
+    
+  })
 }
 
 togglePopUp = () => {
